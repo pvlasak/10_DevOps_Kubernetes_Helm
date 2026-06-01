@@ -12,7 +12,7 @@ this repository demonstrates deploying Kubernetes cluster using Helm
 - mongo-express can be deployed as simle YAML file: *kubectl apply -f helm-mongo-express.yaml*
 - add helm chart repository for nginx ingress controller - *helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx*
 - To check the content of repository: *helm search repo ingress-nginx* to show the chart name
-- installation of the helm chart from repository, Kubernetes component will be called **nginx-ingress**: *helm install nginx-ingress ingress-nginx/ingress-nginx --set controller*
+- installation of the helm chart from repository, Kubernetes component will be called **nginx-ingress**: *helm install nginx-ingress ingress-nginx/ingress-nginx --set controller.publishService.enabled=true*
 - on Linode platform a **Nodebalancer** is dynamically created and Nodebalancer becomes an entrypoint to cluster. 
 - hostname of the Nodebalancer is used to create ingress rules in the **host attribute**. Request approaching the Nodebalancer on given hostname is then forwarded to a service of mongo-express. 
 - Ingress rule has to be deployed after changing a host attribute to a hostname of a Nodebalancer on the Cloud platform: *kubectl apply -f helm-ingress.yaml*
